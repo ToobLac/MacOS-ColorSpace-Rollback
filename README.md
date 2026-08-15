@@ -6,5 +6,5 @@ See [MC-307336](https://bugs.mojang.com/browse/MC/issues/MC-307336) and [MC-3082
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0, based on [fabric-example-mod](https://github.com/FabricMC/fabric-example-mod),
+This project is licensed under the GNU General Public License v3.0, and based on [fabric-example-mod](https://github.com/FabricMC/fabric-example-mod),
 which is licensed under the CC0 license.
