@@ -9,5 +9,5 @@ pluginManagement {
 	}
 }
 
-// Should match your modid
-rootProject.name = 'modid'
+// Should match your mac-colorspace-rollback
+rootProject.name = 'mac-colorspace-rollback'
