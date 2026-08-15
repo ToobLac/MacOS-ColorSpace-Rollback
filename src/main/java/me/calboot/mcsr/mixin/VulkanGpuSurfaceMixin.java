@@ -22,9 +22,9 @@ package me.calboot.mcsr.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.mojang.blaze3d.platform.MacosUtil;
-import com.mojang.blaze3d.vulkan.VulkanGpuSurface;
+import com.mojang.renderpearl.backend.vulkan.VulkanGpuSurface;
 import me.calboot.mcsr.MacosColorspaceRollbackClient;
+import me.calboot.mcsr.MacosUtil;
 import org.lwjgl.vulkan.VkSurfaceFormatKHR;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
