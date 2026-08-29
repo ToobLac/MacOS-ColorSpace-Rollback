@@ -34,7 +34,12 @@ public class MacosUtil {
                 .sendProxy("NSApplication", "sharedApplication")
                 .sendProxy("windows")
                 .sendProxy("firstObject");
-        window.send("setColorSpace:", window.getClient().send("NSColorSpace", "displayP3ColorSpace"));
+        if (window == null) {
+            MacosColorspaceRollbackClient.LOGGER.warn("Failed to set main window color space, due to absence of main window");
+        } else {
+            MacosColorspaceRollbackClient.LOGGER.info("Modifying main window color space for OpenGL");
+            window.send("setColorSpace:", window.getClient().send("NSColorSpace", "displayP3ColorSpace"));
+        }
     }
 
 }
