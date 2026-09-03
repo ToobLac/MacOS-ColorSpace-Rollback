@@ -30,16 +30,22 @@ public class MacosUtil {
     public static final boolean IS_MACOS = System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("mac");
 
     public static void setMainWindowColorSpace() {
-        Proxy window = Client.getInstance()
+        Proxy windows = Client.getInstance()
                 .sendProxy("NSApplication", "sharedApplication")
-                .sendProxy("windows")
-                .sendProxy("firstObject");
-        if (window == null) {
-            MacosColorspaceRollbackClient.LOGGER.warn("Failed to set main window color space, due to absence of main window");
-        } else {
-            MacosColorspaceRollbackClient.LOGGER.info("Modifying main window color space for OpenGL");
-            window.send("setColorSpace:", window.getClient().send("NSColorSpace", "displayP3ColorSpace"));
+                .sendProxy("windows");
+        if (windows != null) {
+            int count = windows.sendInt("count");
+            if (count > 0) {
+                MacosColorspaceRollbackClient.LOGGER.info("Modifying color space for OpenGL windows");
+                for (int i = 0; i < count; i++) {
+                    Proxy window = windows.sendProxy("objectAtIndex:", i);
+                    window.send("setColorSpace:", window.getClient().send("NSColorSpace", "displayP3ColorSpace"));
+                }
+            }
+
         }
+
+        MacosColorspaceRollbackClient.LOGGER.warn("Failed to modify color space, due to absence of native windows");
     }
 
 }
