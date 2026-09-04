@@ -3,8 +3,10 @@ plugins {
 	id 'maven-publish'
 }
 
-version = project.mod_version
+version = project.mod_version + "+mc" + project.minecraft_version
 group = project.maven_group
+
+JavaVersion javaVersion = JavaVersion.VERSION_25
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -21,16 +23,21 @@ dependencies {
 }
 
 processResources {
-	def version = project.version
 	inputs.property "version", version
 
 	filesMatching("fabric.mod.json") {
 		expand "version": version
 	}
+
+	filesMatching("mac-colorspace-rollback.mixins.json") {
+		expand([
+				"MIXIN_COMPATIBILITY_LEVEL": "JAVA_${javaVersion.majorVersion}"
+		])
+	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 25
+	it.options.release = javaVersion.ordinal() + 1
 }
 
 java {
@@ -39,8 +46,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	sourceCompatibility = javaVersion
+	targetCompatibility = javaVersion
 }
 
 jar {
