@@ -37,7 +37,7 @@ public class MinecraftMixin {
             method = "<init>",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcom/mojang/blaze3d/platform/Window;setWindowMaxSize(II)V"
+                    target = "Lcom/mojang/renderpearl/api/device/GpuDevice;createSurface(JLjava/util/function/BooleanSupplier;)Lcom/mojang/renderpearl/api/device/GpuSurface;"
             )
     )
     private void setMainWindowColorSpace(CallbackInfo ci, @Local GpuBackend backend) {
