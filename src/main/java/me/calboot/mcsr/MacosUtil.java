@@ -29,7 +29,7 @@ public class MacosUtil {
 
     public static final boolean IS_MACOS = System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("mac");
 
-    public static void setMainWindowColorSpace() {
+    public static void gl_setMainWindowColorSpace() {
         Proxy windows = Client.getInstance()
                 .sendProxy("NSApplication", "sharedApplication")
                 .sendProxy("windows");
