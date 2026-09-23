@@ -42,7 +42,7 @@ public class MinecraftMixin {
     )
     private void setMainWindowColorSpace(CallbackInfo ci, @Local GpuBackend backend) {
         if (MacosUtil.IS_MACOS && backend instanceof GlBackend) {
-            MacosUtil.setMainWindowColorSpace();
+            MacosUtil.gl_setMainWindowColorSpace();
         }
     }
 
