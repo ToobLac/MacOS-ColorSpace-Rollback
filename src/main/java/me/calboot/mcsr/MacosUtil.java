@@ -41,6 +41,7 @@ public class MacosUtil {
                     Proxy window = windows.sendProxy("objectAtIndex:", i);
                     window.send("setColorSpace:", window.getClient().send("NSColorSpace", "displayP3ColorSpace"));
                 }
+                return;
             }
 
         }
