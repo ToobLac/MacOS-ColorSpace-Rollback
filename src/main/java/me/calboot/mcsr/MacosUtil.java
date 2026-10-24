@@ -42,7 +42,7 @@ public class MacosUtil {
                     window.send("setColorSpace:", window.getClient().send("NSColorSpace", "displayP3ColorSpace"));
                 }
             }
-
+            return;
         }
 
         MacosColorspaceRollbackClient.LOGGER.warn("Failed to modify color space, due to absence of native windows");
